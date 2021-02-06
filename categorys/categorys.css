@@ -1,0 +1,44 @@
+.cat {
+    padding: 2.5rem 0;
+}
+.cat-section-title h3 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-transform: capitalize;
+    letter-spacing: var(--mainSpacing);
+}
+.cat-center {
+    width: 90vw;
+    margin: 0 auto;
+    max-width: 1170px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 2rem;
+}
+
+.cat-img {
+    display: block;
+    width: 100%;
+    min-height: 13rem;
+    transition: var(--mainTransition);
+}
+.img-container:hover .cat-img {
+    opacity: 0.5;
+}
+
+.cat-title h4 {
+    font-size: 20px;
+    text-align: center;
+    text-transform: capitalize;
+    margin-top: 1rem;
+    letter-spacing: var(--mainSpacing);
+}
+.cat-title h3 {
+    font-size: 17px;
+    text-align: center;
+    text-transform: capitalize;
+    margin-top: 0.5rem;
+    letter-spacing: var(--mainSpacing);
+}

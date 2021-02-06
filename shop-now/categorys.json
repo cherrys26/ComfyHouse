@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "id": "1",
+            "title": "Panel",
+            "image": "../images/product-4.jpeg"
+        },
+        {
+            "id": "2",
+            "title": "Kitchen",
+            "image": "../images/product-5.jpeg"
+        },
+        {
+            "id": "3",
+            "title": "Bedroom",
+            "image": "../images/product-1.jpeg"
+        },
+        {
+            "id": "4",
+            "title": "Living-Room",
+            "image": "../images/product-7.jpeg"
+        }
+    ]
+}
