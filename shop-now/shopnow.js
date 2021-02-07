@@ -3,12 +3,10 @@ class Categorys {
     async getCategorys() {
         try {
             let result = await fetch('categorys.json');
-            let data = await result.json();
-            let categorys = data.items;
+            let categorys = await result.json();
             categorys = categorys.map(function (item) {
                 return {
                     title: item.title,
-                    id: item.id,
                     image: item.image
 
                 }
@@ -44,13 +42,14 @@ class UICategory {
 document.addEventListener("DOMContentLoaded", () => {
     const uiCategory = new UICategory();
     const categorys = new Categorys();
-
+    const ui = new UI();
+    
     categorys.getCategorys().then(categorys => {
         uiCategory.displayCategorys(categorys);
     });
 
-    const ui = new UI();
 
+    ui.setupAPP()
     ui.getBagButtons();
     ui.cartLogic();
 })

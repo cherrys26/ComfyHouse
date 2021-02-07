@@ -4,78 +4,88 @@ const app = express();
 
 app.use(express.json());
 
-const products =
-    [
-        { id: 1, title: 'queen panel bed', price: "$10.99", image: "../images/product-1.jepg", description: "hello World", category: "Panel" },
-        { id: 2, title: 'king panel bed', price: "$10.99", image: "../images/product-2.jepg", description: "hello Worl", category: "Panel" },
-        { id: 3, title: 'single panel bed', price: "$10.99", image: "../images/product-3.jepg", description: "hello Wor", category: "Panel" },
-        { id: 4, title: 'twin panel bed', price: "$10.99", image: "../images/product-4.jepg", description: "hello Wo", category: "Panel" },
-        { id: 5, title: 'fridge', price: "$10.99", image: "../images/product-5.jepg", description: "hello W", category: "Panel" },
-        { id: 6, title: 'dresser', price: "$10.99", image: "../images/product-6.jepg", description: "hello ", category: "Panel" },
-        { id: 7, title: 'couch', price: "$10.99", image: "../images/product-7.jepg", description: "hell", category: "Panel" },
-        { id: 8, title: 'table', price: "$10.99", image: "../images/product-8.jepg", description: "hel", category: "Panel" },
-    ]
-    ;
+const product = require('./products.json');
 
 app.get('/', (req, res) => {
-    res.send(products);
+    res.send(product);
 });
 
 app.get('/api/products', (req, res) => {
-    res.send(products);
+    res.send(product);
+});
+
+app.get('/api/products/:id', (req, res) => {
+    var product = product.reduce((item) => {
+        return item.Items.find(p => p.id === id);
+    }, undefined);
+    // if (!products) return res.status(404).send('The product with the given id was not found.');
+    res.send(product);
 });
 
 app.post('/api/products', (req, res) => {
-    const { error } = validateCourse(req.body);
+    const { error } = validateProduct(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
 
-    const course = {
-        id: products.length + 1,
+    const product = {
+        id: product.length + 1,
         title: req.body.title,
     };
-    products.push(course);
-    res.send(course);
+    product.push(product);
+    res.send(product);
 });
 
 app.put('/api/products/:id', (req, res) => {
-    const course = products.find(c => c.id === parseInt(req.params.id));
-    if (!course) return res.status(404).send('The course with the given ID was not found.');
+    const product = product.find(c => c.id === parseInt(req.params.id));
+    if (!product) return res.status(404).send('The product with the given ID was not found.');
 
-    const { error } = validateCourse(req.body);
+    const { error } = validateProduct(req.body);
     if (error) return res.status(400).send(error.details[0].message);
 
 
-    course.title = req.body.title;
-    course.price = req.body.price;
-    res.send(course);
+    product.title = req.body.title;
+    product.price = req.body.price;
+    res.send(product);
 
 });
 
 app.delete('/api/products/:id', (req, res) => {
-    const course = products.find(c => c.id === parseInt(req.params.id));
-    if (!course) return res.status(404).send('The course with the given ID was not found.');
+    const product = product.find(c => c.id === parseInt(req.params.id));
+    if (!product) return res.status(404).send('The product with the given ID was not found.');
 
-    const index = products.indexOf(course);
-    products.splice(index, 1);
-    res.send(course);
+    const index = product.indexOf(product);
+    product.splice(index, 1);
+    res.send(product);
 });
 
-function validateCourse(course) {
+function validateProduct(product) {
     const schema = {
         name: Joi.string().min(3).required()
     };
 
-    return Joi.validate(course, schema);
+    return Joi.validate(product, schema);
 
 };
 
+const category = require('./shop-now/categorys.json');
 
-app.get('/api/products/:id', (req, res) => {
-    const course = products.find(c => c.id === parseInt(req.params.id));
-    if (!course) return res.status(404).send('The course with the given ID was not found.');
-    res.send(course);
+app.get('/api/categorys', (req, res) => {
+    res.send(category)
 });
+
+// app.get('/api/categorys/:title', (req, res) => {
+//     const categorys = category.find(c => c.title === (req.params.title));
+//     if (!categorys) res.status(404).send('Category not found');
+//     res.send(categorys);
+// });
+
+app.get('/api/categorys/:category', (req, res) => {
+    const categorys = product.filter(c => c.category === (req.params.category));
+    if (!categorys) res.status(404).send('Category not found');
+    res.send(categorys);
+});
+
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

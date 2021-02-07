@@ -1,5 +1,4 @@
-{
-    "items": [
+[
         {
             "id": "1",
             "title": "Panel",
@@ -21,4 +20,3 @@
             "image": "../images/product-7.jpeg"
         }
     ]
-}
