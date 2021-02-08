@@ -3,7 +3,8 @@ class Categorys {
     async getCategorys() {
         try {
             let result = await fetch('categorys.json');
-            let categorys = await result.json();
+            let data = await result.json();
+            let categorys = data.items;
             categorys = categorys.map(function (item) {
                 return {
                     title: item.title,
@@ -26,7 +27,7 @@ class UICategory {
             result += `
             <article class="category">
     <div class="img-container">
-    <a href="../categorys/${category.title}.html">
+    <a onclick="userAction()" href="../categorys/${category.title}.html ">
         <img src=${category.image} alt="category" class="category-img">
                 </a></div>
         <h3>${category.title
@@ -42,14 +43,11 @@ class UICategory {
 document.addEventListener("DOMContentLoaded", () => {
     const uiCategory = new UICategory();
     const categorys = new Categorys();
-    const ui = new UI();
-    
+
+
     categorys.getCategorys().then(categorys => {
         uiCategory.displayCategorys(categorys);
+
     });
-
-
-    ui.setupAPP()
-    ui.getBagButtons();
-    ui.cartLogic();
 })
+

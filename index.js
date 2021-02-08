@@ -7,7 +7,7 @@ app.use(express.json());
 const product = require('./products.json');
 
 app.get('/', (req, res) => {
-    res.send(product);
+    res.send(product.items);
 });
 
 app.get('/api/products', (req, res) => {
@@ -15,11 +15,9 @@ app.get('/api/products', (req, res) => {
 });
 
 app.get('/api/products/:id', (req, res) => {
-    var product = product.reduce((item) => {
-        return item.Items.find(p => p.id === id);
-    }, undefined);
-    // if (!products) return res.status(404).send('The product with the given id was not found.');
-    res.send(product);
+    const products = product.items.find(p => p.id === (req.params.id));
+    if (!products) return res.status(404).send('The product with the given id was not found.');
+    res.send(products);
 });
 
 app.post('/api/products', (req, res) => {
@@ -70,7 +68,7 @@ function validateProduct(product) {
 const category = require('./shop-now/categorys.json');
 
 app.get('/api/categorys', (req, res) => {
-    res.send(category)
+    res.send(category.items)
 });
 
 // app.get('/api/categorys/:title', (req, res) => {
@@ -80,8 +78,9 @@ app.get('/api/categorys', (req, res) => {
 // });
 
 app.get('/api/categorys/:category', (req, res) => {
-    const categorys = product.filter(c => c.category === (req.params.category));
-    if (!categorys) res.status(404).send('Category not found');
+    const cat = product.items;
+    const categorys = cat.filter(c => c.category === (req.params.category));
+    if (!categorys) return res.status(404).send('The category was not found.');
     res.send(categorys);
 });
 

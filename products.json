@@ -6,7 +6,7 @@
       "price": 10.99,
       "image": "../images/product-1.jpeg",
       "description": "Item1",
-      "category": "Panel"
+      "category": "Bedroom"
     },
     {
       "id": "2",
@@ -14,7 +14,7 @@
       "price": 12.99,
       "image": "../images/product-2.jpeg",
       "description": "Item2",
-      "category": "Panel"
+      "category": "Bedroom"
     },
     {
       "id": "3",
@@ -22,7 +22,7 @@
       "price": 12.99,
       "image": "../images/product-3.jpeg",
       "description": "Item3",
-      "category": "Panel"
+      "category": "Bedroom"
     },
     {
       "id": "4",
@@ -30,7 +30,7 @@
       "price": 22.99,
       "image": "../images/product-4.jpeg",
       "description": "Item4",
-      "category": "Panel"
+      "category": "Bedroom"
     },
     {
       "id": "5",
@@ -62,7 +62,7 @@
       "price": 3333.99,
       "image": "../images/product-8.jpeg",
       "description": "Item8",
-      "category": "Living-room Bedroom"
+      "category": "Living-room"
     }
   ]
 }
