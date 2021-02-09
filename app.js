@@ -20,31 +20,6 @@ let cart = [];
 //buttons
 let buttonsDOM = [];
 
-//getting the products
-
-// class Products {
-//     async getProducts() {
-//         try {
-//             let result = await fetch('/products.json');
-//             let data = await result.json();
-//             let products = data.items;
-//             products = products.map(function (item) {
-//                 return {
-//                     title: item.title,
-//                     price: item.price,
-//                     id: item.id,
-//                     image: item.image,
-//                 }
-//             })
-//             return products
-//         } catch (error) {
-//             console.log(error);
-//         }
-
-//     }
-// };
-
-//UI - display products
 class UI {
 
     displayProducts(products) {
@@ -53,7 +28,7 @@ class UI {
             result += `
             <article class="all-products">
                 <div class="img-container">
-                <a href="../product/${product.id}">
+                <a href="../product/product.html/${product.id}">
                     <img src=${product.image} alt="products" class="products-img">
                 </a>
                     <button class="bag-btn" data-id=${product.id}>
@@ -67,6 +42,42 @@ class UI {
             `;
         });
         productsDOM.innerHTML = result;
+    }
+
+    displayCategorys(categorys) {
+        let result = '';
+        categorys.forEach(category => {
+            result += `
+            <article class="category">
+    <div class="img-container">
+    <a onclick="userAction()" href="../categorys/${category.title}">
+        <img src=${category.image} alt="category" class="category-img">
+                </a></div>
+        <h3>${category.title
+                }</h3>
+
+            </article>
+            `;
+        });
+        categorysDOM.innerHTML = result;
+    }
+
+    displayCat(cat) {
+        let result = '';
+        cat.forEach(cat => {
+            result += `
+            <div class="img-container">
+                <a href="../product/product/${id}">
+                    <img src="${cat.image}" class="cat-img">
+                </a>
+                <div class="cat-title">
+                    <h4>${cat.title}</h4>
+                    <h3>$${cat.price}</h3>
+                </div>
+            </div>
+            `;
+        })
+        catDOM.innerHTML = result;
     }
 
 
@@ -233,165 +244,10 @@ class Storage {
 
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
-    //setup application
     ui.setupAPP();
 
-    //get all products
-    // products.getProducts().then(products => {
-    //     ui.displayProducts(products);
-    //     Storage.saveProducts(products);
-    // }).then(() => {
-    // ui.getBagButtons();
     ui.cartLogic();
 });
 
 
 
-// {
-//     "items": [
-//         {
-//             "sys": {
-//                 "id": "1"
-//             },
-//             "fields": {
-//                 "title": "queen panel bed",
-//                 "price": 10.99,
-//                 "image": {
-//                     "fields": {
-//                         "file": {
-//                             "url": "../images/product-1.jpeg"
-//                         }
-//                     }
-//                 },
-//                 "description": "hello"
-//             },
-//             "category": "Panel"
-//         },
-//         {
-//             "sys": {
-//                 "id": "2"
-//             },
-//             "fields": {
-//                 "title": "king panel bed",
-//                 "price": 12.99,
-//                 "image": {
-//                     "fields": {
-//                         "file": {
-//                             "url": "../images/product-2.jpeg"
-//                         }
-//                     }
-//                 },
-//                 "description": "hello",
-//                 "category": "Panel"
-//             }
-//         },
-//         {
-//             "sys": {
-//                 "id": "3"
-//             },
-//             "fields": {
-//                 "title": "single panel bed",
-//                 "price": 12.99,
-//                 "image": {
-//                     "fields": {
-//                         "file": {
-//                             "url": "../images/product-3.jpeg"
-//                         }
-//                     }
-//                 },
-//                 "description": "hello",
-//                 "category": "Panel"
-//             }
-//         },
-//         {
-//             "sys": {
-//                 "id": "4"
-//             },
-//             "fields": {
-//                 "title": "twin panel bed",
-//                 "price": 22.99,
-//                 "image": {
-//                     "fields": {
-//                         "file": {
-//                             "url": "../images/product-4.jpeg"
-//                         }
-//                     }
-//                 },
-//                 "description": "hello",
-//                 "category": "Panel"
-//             }
-//         },
-//         {
-//             "sys": {
-//                 "id": "5"
-//             },
-//             "fields": {
-//                 "title": "fridge",
-//                 "price": 88.99,
-//                 "image": {
-//                     "fields": {
-//                         "file": {
-//                             "url": "../images/product-5.jpeg"
-//                         }
-//                     }
-//                 },
-//                 "description": "hello",
-//                 "category": "Kitchen"
-//             }
-//         },
-//         {
-//             "sys": {
-//                 "id": "6"
-//             },
-//             "fields": {
-//                 "title": "dresser",
-//                 "price": 32.99,
-//                 "image": {
-//                     "fields": {
-//                         "file": {
-//                             "url": "../images/product-6.jpeg"
-//                         }
-//                     }
-//                 },
-//                 "description": "hello",
-//                 "category": "Bedroom"
-//             }
-//         },
-//         {
-//             "sys": {
-//                 "id": "7"
-//             },
-//             "fields": {
-//                 "title": "couch",
-//                 "price": 45.99,
-//                 "image": {
-//                     "fields": {
-//                         "file": {
-//                             "url": "../images/product-7.jpeg"
-//                         }
-//                     }
-//                 },
-//                 "description": "hello",
-//                 "category": "Living-Room"
-//             }
-//         },
-//         {
-//             "sys": {
-//                 "id": "8"
-//             },
-//             "fields": {
-//                 "title": "table",
-//                 "price": 33.99,
-//                 "image": {
-//                     "fields": {
-//                         "file": {
-//                             "url": "../images/product-8.jpeg"
-//                         }
-//                     }
-//                 },
-//                 "description": "hello",
-//                 "category": "Living-Room Bedroom"
-//             }
-//         }
-//     ]
-// }

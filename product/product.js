@@ -1,26 +1,25 @@
-// class Product {
-//     async getProduct() {
-//         try {
-//             let display = await fetch('../products.json');
-//             let data = await display.json();
-//             let product = data.items;
-//             product = product.map(function (item) => {
-
-            // return {
-            //     id: item.id,
-            //     title: item.title,
-            //     price: item.price,
-            //     image: item.image,
-            //     description: item.description,
-            //     category: item.category,
-            // }
-//             })
-//             return product
-//         } catch (error) {
-//             console.log(error);
-//         }
-//     }
-// }
+class Product {
+    async getProduct() {
+        try {
+            let display = await fetch(`http://localhost:3000/api/product/${id}`);
+            let data = await display.json();
+            let product = data.items;
+            product = product.map(function (item) {
+                return {
+                    id: item.id,
+                    title: item.title,
+                    price: item.price,
+                    image: item.image,
+                    description: item.description,
+                    category: item.category,
+                }
+            })
+            return product
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 // class ProductTitle {
 //     async getProductTitle() {
 //         try {

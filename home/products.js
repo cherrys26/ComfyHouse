@@ -2,7 +2,7 @@
 class Products {
     async getProducts() {
         try {
-            let result = await fetch('../products.json');
+            let result = await fetch('http://localhost:3000/api/products');
             let data = await result.json();
             let products = data.items;
             products = products.map(function (item) {

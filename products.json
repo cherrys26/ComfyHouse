@@ -5,7 +5,7 @@
       "title": "queen panel bed",
       "price": 10.99,
       "image": "../images/product-1.jpeg",
-      "description": "Item1",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       "category": "Bedroom"
     },
     {
@@ -13,7 +13,7 @@
       "title": "king panel bed",
       "price": 12.99,
       "image": "../images/product-2.jpeg",
-      "description": "Item2",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       "category": "Bedroom"
     },
     {
@@ -21,7 +21,7 @@
       "title": "single panel bed",
       "price": 12.99,
       "image": "../images/product-3.jpeg",
-      "description": "Item3",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       "category": "Bedroom"
     },
     {
@@ -29,7 +29,7 @@
       "title": "twin panel bed",
       "price": 22.99,
       "image": "../images/product-4.jpeg",
-      "description": "Item4",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       "category": "Bedroom"
     },
     {
@@ -37,7 +37,7 @@
       "title": "fridge",
       "price": 88.99,
       "image": "../images/product-5.jpeg",
-      "description": "Item5",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       "category": "Kitchen"
     },
     {
@@ -45,7 +45,7 @@
       "title": "dresser",
       "price": 32.99,
       "image": "../images/product-6.jpeg",
-      "description": "Item6",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       "category": "Bedroom"
     },
     {
@@ -53,7 +53,7 @@
       "title": "couch",
       "price": 45.99,
       "image": "../images/product-7.jpeg",
-      "description": "Item7",
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
       "category": "Living-Room"
     },
     {
@@ -61,8 +61,8 @@
       "title": "table",
       "price": 3333.99,
       "image": "../images/product-8.jpeg",
-      "description": "Item8",
-      "category": "Living-room"
+      "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
+      "category": "Living-Room"
     }
   ]
 }
