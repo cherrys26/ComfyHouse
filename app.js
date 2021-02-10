@@ -13,6 +13,8 @@ const productDOM = document.querySelector(".product-layout");
 const productTitleDOM = document.querySelector(".product-section-title");
 const catDOM = document.querySelector(".cat-center");
 const titleDOM = document.querySelector(".cat-section-title");
+const prodDOM = document.querySelector(".prod-main");
+
 
 //cart 
 let cart = [];
@@ -28,7 +30,7 @@ class UI {
             result += `
             <article class="all-products">
                 <div class="img-container">
-                <a href="../product/product.html/${product.id}">
+                <a onclick="action(${product.id})">
                     <img src=${product.image} alt="products" class="products-img">
                 </a>
                     <button class="bag-btn" data-id=${product.id}>
@@ -50,7 +52,7 @@ class UI {
             result += `
             <article class="category">
     <div class="img-container">
-    <a onclick="userAction()" href="../categorys/${category.title}">
+    <a onclick="action(${category.title})" href="../categorys/${category.title}">
         <img src=${category.image} alt="category" class="category-img">
                 </a></div>
         <h3>${category.title
@@ -80,6 +82,53 @@ class UI {
         catDOM.innerHTML = result;
     }
 
+    displayProd(prod) {
+        let result = '';
+        prod.forEach(prod => {
+            result += `
+            <div class="product-section-title">
+            <h2>${prod.title}</h2>
+        </div>
+        <div class="product-format">
+            <div class="img-container">
+                <div class="product-layout">
+                    <img src="${prod.image}" class="product-img">
+                    <div>
+                        <div class="product-description">
+                            ${prod.description}
+                        </div>
+                        <div class="product-price">
+                            $${prod.price}
+                            <span class="score">
+                                <div class="score-wrap">
+                                    <span class="stars-active" style="width:${prod.rating}%">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="stars-inactive">
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="add-cart">
+                            <button class="add-banner-btn">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            `;
+        })
+        prodDOM.innerHTML = result;
+    }
 
     getBagButtons() {
         const buttons = [...document.querySelectorAll(".bag-btn")];

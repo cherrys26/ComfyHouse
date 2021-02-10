@@ -1,7 +1,6 @@
 const Joi = require('joi');
 const express = require('express');
 const app = express();
-const fetch = require('node-fetch');
 const cors = require("cors")
 app.use(cors())
 
@@ -9,7 +8,6 @@ app.use(express.json());
 
 const product = require('./products.json');
 const category = require('./shop-now/categorys.json');
-const { response } = require('express');
 
 app.get('/', (req, res) => {
     res.send(product.items);
@@ -19,7 +17,7 @@ app.get('/api/products', (req, res) => {
     res.send(product);
 });
 
-app.get('/api/product/:id', (req, res) => {
+app.get('/api/products/:id', (req, res) => {
     const products = product.items.find(p => p.id === (req.params.id));
     if (!products) return res.status(404).send('The product with the given id was not found.');
     res.send(products);
@@ -82,7 +80,7 @@ app.get('/api/categorys', (req, res) => {
 //     res.send(categorys);
 // });
 
-app.get('/categorys/:category', (req, res) => {
+app.get('/api/categorys/:category', (req, res) => {
     const cat = product.items;
     const categorys = cat.filter(c => c.category === (req.params.category));
     if (!categorys) return res.status(404).send('The category was not found.');

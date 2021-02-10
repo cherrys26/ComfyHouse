@@ -1,3 +1,6 @@
+function action(get_title) {
+    console.log(get_title);
+}
 
 class Products {
     async getProducts() {
@@ -22,6 +25,7 @@ class Products {
 }
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     const products = new Products();
@@ -38,4 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // ui.cartLogic();
         })
 })
+
+
 

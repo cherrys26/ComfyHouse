@@ -3,16 +3,14 @@
 class Cat {
     async getCat() {
         try {
-            let result = await fetch(`http://localhost:3000/categorys/${category.title}`);
+            let result = await fetch(`http://localhost:3000/api/categorys`);
             let data = await result.json();
             let cat = data;
             cat = cat.map(function (item) {
                 return {
                     title: item.title,
-                    price: item.price,
                     id: item.id,
-                    category: item.category,
-                    image: item.image,
+                    image: item.image
                 }
             });
             return cat
