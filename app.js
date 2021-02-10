@@ -22,15 +22,90 @@ let cart = [];
 //buttons
 let buttonsDOM = [];
 
-class UI {
+class Categorys {
+    async getCategorys() {
+        try {
+            let result = await fetch('http://localhost:3000/api/categorys');
+            let data = await result.json();
+            let categorys = data.items;
+            categorys = categorys.map(function (item) {
+                return {
+                    title: item.title,
+                    image: item.image,
+                    id: item.id
+                }
+            })
+            return categorys
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
 
+
+class Cat {
+    async getCat(category) {
+        try {
+            let result = await fetch(`http://localhost:3000/api/categorys/${category}`);
+            let data = await result.json();
+            let cat = data;
+            cat = cat.map(function (item) {
+                return {
+                    title: item.title,
+                    id: item.id,
+                    image: item.image,
+                    price: item.price,
+                }
+            });
+            return cat
+
+        } catch (error) {
+            console.log(error);
+        }
+
+        console.log(cat);
+
+    }
+}
+
+class Products {
+    async getProducts() {
+        try {
+            let result = await fetch('http://localhost:3000/api/products');
+            let data = await result.json();
+            let products = data.items;
+            products = products.map(function (item) {
+                return {
+                    title: item.title,
+                    price: item.price,
+                    id: item.id,
+                    image: item.image,
+                }
+            })
+            return products
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    async getProd(id) {
+        try {
+            let display = await fetch(`http://localhost:3000/api/products/${id}`);
+            let data = await display.json();
+            return (data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+class UI {
     displayProducts(products) {
         let result = '';
         products.forEach(product => {
             result += `
             <article class="all-products">
                 <div class="img-container">
-                <a onclick="action(${product.id})">
+                <a href="/product/product.html?p=${product.id}">
                     <img src=${product.image} alt="products" class="products-img">
                 </a>
                     <button class="bag-btn" data-id=${product.id}>
@@ -46,46 +121,8 @@ class UI {
         productsDOM.innerHTML = result;
     }
 
-    displayCategorys(categorys) {
-        let result = '';
-        categorys.forEach(category => {
-            result += `
-            <article class="category">
-    <div class="img-container">
-    <a onclick="action(${category.title})" href="../categorys/${category.title}">
-        <img src=${category.image} alt="category" class="category-img">
-                </a></div>
-        <h3>${category.title
-                }</h3>
-
-            </article>
-            `;
-        });
-        categorysDOM.innerHTML = result;
-    }
-
-    displayCat(cat) {
-        let result = '';
-        cat.forEach(cat => {
-            result += `
-            <div class="img-container">
-                <a href="../product/product/${id}">
-                    <img src="${cat.image}" class="cat-img">
-                </a>
-                <div class="cat-title">
-                    <h4>${cat.title}</h4>
-                    <h3>$${cat.price}</h3>
-                </div>
-            </div>
-            `;
-        })
-        catDOM.innerHTML = result;
-    }
-
     displayProd(prod) {
-        let result = '';
-        prod.forEach(prod => {
-            result += `
+        let result = `
             <div class="product-section-title">
             <h2>${prod.title}</h2>
         </div>
@@ -126,8 +163,43 @@ class UI {
             </div>
         </div>
             `;
-        })
         prodDOM.innerHTML = result;
+    }
+
+    displayCat(cat) {
+        let result = '';
+        cat.forEach(cat => {
+            result += `
+            <div class="img-container">
+                <a href="/product/product.html?p=${cat.id}">
+                    <img src="${cat.image}" class="cat-img">
+                </a>
+                <div class="cat-title">
+                    <h4>${cat.title}</h4>
+                    <h3>$${cat.price}</h3>
+                </div>
+            </div>
+            `;
+        })
+        catDOM.innerHTML = result;
+    }
+
+    displayCategorys(categorys) {
+        let result = '';
+        categorys.forEach(category => {
+            result += `
+            <article class="category">
+    <div class="img-container">
+    <a href="/categorys/categorys.html?p=${category.title}">
+        <img src=${category.image} alt="category" class="category-img">
+                </a></div>
+        <h3>${category.title
+                }</h3>
+
+            </article>
+            `;
+        });
+        categorysDOM.innerHTML = result;
     }
 
     getBagButtons() {

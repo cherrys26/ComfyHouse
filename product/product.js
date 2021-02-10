@@ -1,33 +1,11 @@
-class Prod {
-    async getProd() {
-        try {
-            let display = await fetch(`http://localhost:3000/api/products`);
-            let data = await display.json();
-            let prod = data.items;
-            prod = prod.map(function (item) {
-                return {
-                    id: item.id,
-                    title: item.title,
-                    price: item.price,
-                    image: item.image,
-                    description: item.description,
-                    category: item.category,
-                    rating: item.rating,
-                }
-            })
-            return prod
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
 
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
-    const prod = new Prod();
+    const products = new Products();
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('p');
 
-
-    prod.getProd().then(prod => {
+    products.getProd(id).then(prod => {
         ui.displayProd(prod);
 
     })
