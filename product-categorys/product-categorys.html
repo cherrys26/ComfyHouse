@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,9 +9,9 @@
     <!--font awesome-->
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <!--custom css-->
-    <link rel="icon" href="../images/logo.svg">
     <link rel="stylesheet" href="../main.css">
-    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="product-categorys.css">
+    <link rel="icon" href="../images/logo.svg">
 
 </head>
 
@@ -18,17 +19,17 @@
     <!--navbar-->
     <nav class="navbar">
         <div class="navbar-center">
-            <div class="div menu-item">
+            <div class="menu-item">
                 <span class="nav-icon">
                     <i class="fas fa-bars"></i>
                 </span>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="../shop-now/shopnow.html">Categorys</a></li>
+                    <li><a href="../home/home.html">Home</a></li>
+                    <li><a href="../categorys/categorys.html">Categorys</a></li>
                     <li><a href="../shopping-cart/cart.html">Shopping Cart</a></li>
                 </ul>
             </div>
-            <a href="index.html">
+            <a href="../home/home.html">
                 <img src="../images/logo.svg" alt="store logo">
             </a>
             <div class="cart-btn">
@@ -39,32 +40,29 @@
             </div>
         </div>
     </nav>
-    <!--end of navbar-->
 
-    <!--hero-->
-    <header class="hero">
-        <div class="banner">
-            <h1 class="banner-title">Furniture Collection</h1>
-            <a href="../shop-now/shopnow.html">
-                <button class="banner-btn">Shop Now</button>
-            </a>
+    <div class="cat-nav">
+        <hr class="hrTop" SIZE=2 width=75%>
+        </hr>
+        <ul class="categoryNav">
+            <li id="categoryNav"><a href="../home/home.html">Index</a></li>
+            <li id="categoryNav"><a href="../categorys/categorys.html">Categorys</a></li>
+            <li id="categoryNav"><a href="#contact">Contact</a></li>
+            <li id="categoryNav"><a href="../shopping-cart/cart.html">Cart</a></li>
+        </ul>
+        <hr class="hrBot" SIZE=2 width=75%>
+        </hr>
+    </div>
+
+    <section class="cat">
+        <div class="cat-section-title">
+
         </div>
-    </header>
-    <!--end of hero-->
-
-    <!--products-->
-
-    <section class="products">
-        <div class="products-section-title">
-            <h2>Our Products</h2>
-        </div>
-        <div class="products-center">
+        <div class="cat-center">
 
         </div>
     </section>
-    <!--end of products-->
 
-    <!--cart-->
     <div class="cart-overlay">
         <div class="cart">
             <span class="close-cart">
@@ -74,8 +72,8 @@
             <div class="cart-content">
                 <!--cart item-->
                 <!-- <div class="cart-item">
-                    
-                </div> -->
+                            
+                        </div> -->
                 <!--end of cart item-->
             </div>
             <div class="cart-footer">
@@ -86,9 +84,12 @@
             </div>
         </div>
     </div>
-    <!--end of cart-->
+
     <script src="../app.js"></script>
-    <script src="products.js"></script>
+    <script src="product-categorys.js"></script>
+    <script src="../repositories/ui-repository.js"></script>
+    <script src="../repositories/cat-repository.js"></script>
 </body>
+
 
 </html>

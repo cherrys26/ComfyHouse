@@ -26,12 +26,12 @@
                     <i class="fas fa-bars"></i>
                 </span>
                 <ul>
-                    <li><a href="../home/index.html">Home</a></li>
-                    <li><a href="/shop-now/shopnow.html">Categorys</a></li>
+                    <li><a href="../home/home.html">Home</a></li>
+                    <li><a href="/categorys/categorys.html">Categorys</a></li>
                     <li><a href="../shopping-cart/cart.html">Shopping Cart</a></li>
                 </ul>
             </div>
-            <a href="../home/index.html">
+            <a href="../home/home.html">
                 <img src="../images/logo.svg" alt="store logo">
             </a>
             <div class="cart-btn">
@@ -48,8 +48,8 @@
         <hr class="hrTop" SIZE=2 width=75%>
         </hr>
         <ul class="categoryNav">
-            <li id="categoryNav"><a href="../home/index.html">Index</a></li>
-            <li id="categoryNav"><a href="../shop-now/shopnow.html">Categorys</a></li>
+            <li id="categoryNav"><a href="../home/home.html">Index</a></li>
+            <li id="categoryNav"><a href="../categorys/categorys.html">Categorys</a></li>
             <li id="categoryNav"><a href="#contact">Contact</a></li>
             <li id="categoryNav"><a href="../shopping-cart/cart.html">Cart</a></li>
         </ul>
@@ -63,35 +63,36 @@
         <div class="prod-main">
 
         </div>
+        <!-- CREATE JS DISPLAY FOR THIS AREA -->
         <div>
             <div class="other-products">
                 Other products
             </div>
-            <!-- CREATE JS DISPLAY FOR THIS AREA -->
+
             <div class="other-product">
                 <div class="other-product-title">
-                    <a href="../home/index.html">
+                    <a href="/product/product.html?p=${product.id}">
                         <img src="../images/product-2.jpeg" class="other-product-img ">
                     </a>
                     <h3>product title</h3>
                     <h4>product price</h4>
                 </div>
                 <div class="other-product-title">
-                    <a href="../home/index.html">
+                    <a href="../home/home.html">
                         <img src="../images/product-3.jpeg" class="other-product-img ">
                     </a>
                     <h3>product title</h3>
                     <h4>product price</h4>
                 </div>
                 <div class="other-product-title">
-                    <a href="../home/index.html">
+                    <a href="../home/home.html">
                         <img src="../images/product-4.jpeg" class="other-product-img ">
                     </a>
                     <h3>product title</h3>
                     <h4>product price</h4>
                 </div>
                 <div class="other-product-title">
-                    <a href="../home/index.html">
+                    <a href="../home/home.html">
                         <img src="../images/product-5.jpeg" class="other-product-img ">
                     </a>
                     <h3>product title</h3>
@@ -125,6 +126,8 @@
         </div>
     </div>
     <script src="../app.js"></script>
+    <script src="../repositories/products-repository.js"></script>
+    <script src="../repositories/ui-repository.js"></script>
     <script src="product.js"></script>
 </body>
 

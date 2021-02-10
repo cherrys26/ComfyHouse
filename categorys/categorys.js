@@ -1,15 +1,11 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
-    const cat = new Cat();
-    const urlParams = new URLSearchParams(window.location.search);
-    const title = urlParams.get('p');
+    const categorys = new Categorys();
 
-    cat.getCat(title).then(cat => {
-        ui.displayCat(cat);
-    },
-    );
+    categorys.getCategorys().then(categorys => {
+        ui.displayCategorys(categorys);
+
+    });
 
 })
-
 

@@ -6,8 +6,8 @@ app.use(cors())
 
 app.use(express.json());
 
-const product = require('./products.json');
-const category = require('./shop-now/categorys.json');
+const product = require('./json/products.json');
+const category = require('./json/categorys.json');
 
 app.get('/', (req, res) => {
     res.send(product.items);
