@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     products.getOtherProds(category).then(otherProds => {
-        ui.displayOtherProds(otherProds);
+        ui.displayOtherProds(otherProds)
+    }).then(hideProd => {
+        
     })
-});
+})

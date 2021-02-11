@@ -31,8 +31,8 @@ class Products {
         try {
             let result = await fetch(`http://localhost:3000/api/categorys/${category}`);
             let data = await result.json();
-            let otherProducts = data.items;
-            otherProducts = otherProducts.map(function (item) {
+            let otherProds = data;
+            otherProds = otherProds.map(function (item) {
                 return {
                     title: item.title,
                     id: item.id,
@@ -41,10 +41,11 @@ class Products {
                     category: item.category,
                 }
             })
-            return otherProducts;
+            return otherProds;
         }
         catch (err) {
             console.log(err);
         }
     }
 }
+

@@ -63,7 +63,6 @@ class UI {
             </div>
         </div>
             `;
-        console.log(result)
         prodDOM.innerHTML = result;
     }
 
@@ -72,7 +71,7 @@ class UI {
         cat.forEach(cat => {
             result += `
             <div class="img-container">
-                <a href="/product/product.html?p=${cat.id}">
+                <a href="/product/product.html?p=${cat.id}&c=${cat.category}">
                     <img src="${cat.image}" class="cat-img">
                 </a>
                 <div class="cat-title">
@@ -103,11 +102,11 @@ class UI {
         categorysDOM.innerHTML = result;
     }
 
-    displayOtherProds(otherProds) {
+    displayOtherProds(otherProd) {
         let result = '';
-        otherProds.forEach(otherProd => {
+        otherProd.forEach(otherProd => {
             result += ` <div class="other-product-title">
-                    <a href="/product/product.html?p=${otherProd.id}">
+                    <a href="/product/product.html?p=${otherProd.id}&c=${otherProd.category}">
                         <img src="${otherProd.image}" class="other-product-img ">
                     </a>
                     <h3>${otherProd.title}</h3>
@@ -115,9 +114,9 @@ class UI {
                 </div>
                 `;
         })
-        console.log(result);
         otherProdsDOM.innerHTML = result;
     }
+
 
     getBagButtons() {
         const buttons = [...document.querySelectorAll(".bag-btn")];

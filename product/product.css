@@ -135,6 +135,16 @@
     transition: var(--mainTransition);
 }
 
+.other-product-title {
+    display: block;
+    width: 100%;
+    min-height: 12rem;
+    transition: var(--mainTransition);
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .other-product-img:hover {
     opacity: 0.5;
 }
