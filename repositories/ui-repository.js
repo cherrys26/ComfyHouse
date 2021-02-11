@@ -5,7 +5,7 @@ class UI {
             result += `
             <article class="all-products">
                 <div class="img-container">
-                <a href="/product/product.html?p=${product.id}">
+                <a href="/product/product.html?p=${product.id}&c=${product.category}">
                     <img src=${product.image} alt="products" class="products-img">
                 </a>
                     <button class="bag-btn" data-id=${product.id}>
@@ -63,6 +63,7 @@ class UI {
             </div>
         </div>
             `;
+        console.log(result)
         prodDOM.innerHTML = result;
     }
 
@@ -100,6 +101,22 @@ class UI {
             `;
         });
         categorysDOM.innerHTML = result;
+    }
+
+    displayOtherProds(otherProds) {
+        let result = '';
+        otherProds.forEach(otherProd => {
+            result += ` <div class="other-product-title">
+                    <a href="/product/product.html?p=${otherProd.id}">
+                        <img src="${otherProd.image}" class="other-product-img ">
+                    </a>
+                    <h3>${otherProd.title}</h3>
+                    <h4>$${otherProd.price}</h4>
+                </div>
+                `;
+        })
+        console.log(result);
+        otherProdsDOM.innerHTML = result;
     }
 
     getBagButtons() {

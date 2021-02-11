@@ -10,6 +10,7 @@ class Products {
                     price: item.price,
                     id: item.id,
                     image: item.image,
+                    category: item.category,
                 }
             })
             return products
@@ -24,6 +25,26 @@ class Products {
             return (data);
         } catch (error) {
             console.log(error);
+        }
+    }
+    async getOtherProds(category) {
+        try {
+            let result = await fetch(`http://localhost:3000/api/categorys/${category}`);
+            let data = await result.json();
+            let otherProducts = data.items;
+            otherProducts = otherProducts.map(function (item) {
+                return {
+                    title: item.title,
+                    id: item.id,
+                    price: item.price,
+                    image: item.image,
+                    category: item.category,
+                }
+            })
+            return otherProducts;
+        }
+        catch (err) {
+            console.log(err);
         }
     }
 }
