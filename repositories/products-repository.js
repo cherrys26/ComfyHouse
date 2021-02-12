@@ -18,6 +18,7 @@ class Products {
             console.log(error);
         }
     }
+
     async getProd(id) {
         try {
             let display = await fetch(`http://localhost:3000/api/products/${id}`);
@@ -27,12 +28,13 @@ class Products {
             console.log(error);
         }
     }
+
     async getOtherProds(category) {
         try {
             let result = await fetch(`http://localhost:3000/api/categorys/${category}`);
             let data = await result.json();
             let otherProds = data;
-            otherProds = otherProds.map(function (item) {
+            otherProds = otherProds.filter(function (item) {
                 return {
                     title: item.title,
                     id: item.id,

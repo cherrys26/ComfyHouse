@@ -8,11 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     products.getProd(id).then(prod => {
         ui.displayProd(prod);
+        Storage.saveProds(prod);
     })
+        .then(() => {
+            ui.getBagButtons();
+        })
 
     products.getOtherProds(category).then(otherProds => {
-        ui.displayOtherProds(otherProds)
-    }).then(hideProd => {
-        
+        ui.displayOtherProds(otherProds);
+        console.log(id);
     })
 })

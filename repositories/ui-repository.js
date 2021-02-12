@@ -55,9 +55,9 @@ class UI {
                                 </div>
                             </span>
                         </div>
-                        <div class="add-cart">
-                            <button class="add-banner-btn">Add to Cart</button>
-                        </div>
+                        
+                            <button class="bag-btn" data-id=${prod.id}>Add to Cart</button>
+   
                     </div>
                 </div>
             </div>
@@ -117,7 +117,6 @@ class UI {
         otherProdsDOM.innerHTML = result;
     }
 
-
     getBagButtons() {
         const buttons = [...document.querySelectorAll(".bag-btn")];
         buttonsDOM = buttons;
@@ -132,20 +131,39 @@ class UI {
                 event.target.innerText = "In Cart";
                 event.target.disabled = true;
                 //get product from products 
-                let cartItem = {
-                    ...Storage.getProduct(id),
-                    amount: 1
-                };
-                //add products to cart
-                cart = [...cart, cartItem];
-                //save cart in local storage
-                Storage.saveCart(cart);
-                //set cart values 
-                this.setCartValues(cart);
-                //display cart item
-                this.addCartItem(cartItem);
-                //show the cart
-                this.showCart();
+                if (window.location.pathname == '/home/home.html') {
+                    let cartItem = {
+                        ...Storage.getProduct(id),
+                        amount: 1
+                    };
+
+                    //add products to cart
+                    cart = [...cart, cartItem];
+                    //save cart in local storage
+                    Storage.saveCart(cart);
+                    //set cart values 
+                    this.setCartValues(cart);
+                    //display cart item
+                    this.addCartItem(cartItem);
+                    //show the cart
+                    this.showCart();
+                } else if (window.location.pathname == '/product/product.html') {
+                    let cartItem = {
+                        ...Storage.getProds(id),
+                        amount: 1
+                    };
+                    //add products to cart
+                    cart = [...cart, cartItem];
+                    //save cart in local storage
+                    Storage.saveCart(cart);
+                    //set cart values 
+                    this.setCartValues(cart);
+                    //display cart item
+                    this.addItem(cartItem);
+                    //show the cart
+                    this.showCart();
+                }
+
             });
         });
     }
@@ -177,6 +195,25 @@ class UI {
         cartContent.appendChild(div);
 
     }
+    addItem(prod) {
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.classList.add('add-cart');
+        div.innerHTML = `<img src=${prod.image} alt="product">
+                    <div>
+                        <h4>${prod.title}</h4>
+                        <h5>$${prod.price}</h5>
+                        <span class="remove-item" data-id=${prod.id}>Remove</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-chevron-up" data-id=${prod.id}></i>
+                        <p class="item-amount">${prod.amount}</p>
+                        <i class="fas fa-chevron-down" data-id=${prod.id}></i>
+                    </div>`;
+        cartContent.appendChild(div);
+
+    }
+
     showCart() {
         cartOverlay.classList.add('transparentBcg');
         cartDOM.classList.add('showCart');
@@ -188,6 +225,7 @@ class UI {
         cartBtn.addEventListener('click', this.showCart);
         closeCartBtn.addEventListener('click', this.hideCart);
     }
+
     populateCart(cart) {
         cart.forEach(item => this.addCartItem(item));
     }
@@ -198,7 +236,7 @@ class UI {
     }
     cartLogic() {
         clearCartBtn.addEventListener('click', () => {
-            this.clearCart()
+            this.clearCart();
         });
         //cart functionality
         cartContent.addEventListener('click', event => {
@@ -238,7 +276,7 @@ class UI {
         })
     }
     clearCart() {
-        let cartItems = cart.map(item => item.id);
+        let cartItems = cart.map(items => items.id);
         cartItems.forEach(id => this.removeItem(id));
         console.log(cartContent.children)
 
