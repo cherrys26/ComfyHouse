@@ -122,6 +122,23 @@ class UI {
         buttonsDOM = buttons;
         buttons.forEach(button => {
             let id = button.dataset.id;
+            if (window.location.pathname == '/shopping-cart/cart.html') {
+                button.addEventListener("click", () => {
+                    let cartItem = {
+                        ...Storage.getProduct(id),
+                        amount: 1
+                    };
+
+                    //add products to cart
+                    cart = [...cart, cartItem];
+                    //save cart in local storage
+                    Storage.saveCart(cart);
+                    //set cart values 
+                    this.setCartValues(cart);
+                    //display cart item
+                    this.addCartItems(cartItem);
+                })
+            }
             let inCart = cart.find(item => item.id === id);
             if (inCart) {
                 button.innerText = "In Cart"
@@ -177,11 +194,40 @@ class UI {
         cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
         cartItems.innerText = itemsTotal;
     }
+
     addCartItem(item) {
-        const div = document.createElement('div');
-        div.classList.add('cart-item');
-        div.classList.add('add-cart');
-        div.innerHTML = `<img src=${item.image} alt="product">
+        if (window.location.pathname == 'shopping-cart/cart.html') {
+            const div = document.createElement('div');
+            div.classList.add('cart-item');
+            div.classList.add('add-cart');
+            div.innerHTML = `
+            <div class="content">
+                <div class="cont">
+                    <div class="del"><span>
+                        <i class="far fa-trash-alt delete data-id=${item.id}"></i>
+                    </span></div>
+                    <div class="first">
+                        <img class="image" src="${item.image}">
+                    </div>
+                        <div class="second">
+                            <span>${item.title}</span>
+                        </div>
+                        <div class="third">item
+                            <span class="minus"><i class="far fa-minus-square data-id=${item.id}" ></i></span>
+                            <span class="quantity">${item.amount}</span>
+                            <span class="plus"><i class="far fa-plus-square data-id=${item.id}"></i></span>
+                        </div>
+                        <div class="end">
+                            <span>$${item.price}</span>
+                    </div>
+                    </div>
+                </div>`;
+            shoppingCartDom.appendChild(div);
+        } else {
+            const div = document.createElement('div');
+            div.classList.add('cart-item');
+            div.classList.add('add-cart');
+            div.innerHTML = `<img src=${item.image} alt="product">
                     <div>
                         <h4>${item.title}</h4>
                         <h5>$${item.price}</h5>
@@ -192,8 +238,8 @@ class UI {
                         <p class="item-amount">${item.amount}</p>
                         <i class="fas fa-chevron-down" data-id=${item.id}></i>
                     </div>`;
-        cartContent.appendChild(div);
-
+            cartContent.appendChild(div)
+        };
     }
     addItem(prod) {
         const div = document.createElement('div');
@@ -219,11 +265,16 @@ class UI {
         cartDOM.classList.add('showCart');
     }
     setupAPP() {
-        cart = Storage.getCart();
-        this.setCartValues(cart);
-        this.populateCart(cart);
-        cartBtn.addEventListener('click', this.showCart);
-        closeCartBtn.addEventListener('click', this.hideCart);
+        if (window.location.pathname == '/shopping-cart/cart.html') {
+            cart = Storage.getCart();
+            this.setCartValues(cart);
+        } else {
+            cart = Storage.getCart();
+            this.setCartValues(cart);
+            this.populateCart(cart);
+            cartBtn.addEventListener('click', this.showCart);
+            closeCartBtn.addEventListener('click', this.hideCart);
+        }
     }
 
     populateCart(cart) {

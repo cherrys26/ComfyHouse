@@ -1,0 +1,78 @@
+.checkout-content {
+    margin: 4rem 8rem;
+}
+
+.shopping-cart {
+    font-size: 2rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.content {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+}
+
+.cont {
+    padding: 20px 30px;
+    display: flex;
+}
+
+.total {
+    text-align: right;
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+}
+
+.main-content {
+    border: 1px;
+    border-bottom: 0.5px;
+    border-style: solid;
+    border-color: gainsboro;
+    border-radius: 3px;
+}
+
+.checkout-btn {
+    padding: 0.75rem 1.52rem;
+    text-transform: uppercase;
+    letter-spacing: var(--mainSpacing);
+    font-size: 1.05rem;
+    background: var(--primaryColor);
+    color: var(--mainBlack);
+    border: 1px solid var(--primaryColor);
+    transition: var(--mainTransition);
+    cursor: pointer;
+    margin-top: 15px;
+    margin-left: auto;
+    display: block;
+}
+
+.checkout-btn:hover {
+    background: transparent;
+    color: var(--primaryColor);
+}
+
+.image {
+    width: 200px;
+}
+
+.first,
+.second,
+.third,
+.end,
+.del {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.del {
+    margin-right: 15px;
+}
+
+.second,
+.third,
+.end {
+    margin-right: 75px;
+    margin-left: 75px;
+}

@@ -153,7 +153,7 @@ body {
 }
 
 /* --------------- End of Cart ---------------- */
-.banner-btn {
+.shopnow-btn {
   padding: 1rem 3rem;
   text-transform: uppercase;
   letter-spacing: var(--mainSpacing);
@@ -164,7 +164,43 @@ body {
   transition: var(--mainTransition);
   cursor: pointer;
 }
+.shopnow-btn:hover {
+  background: transparent;
+  color: var(--primaryColor);
+}
+
+.banner-btn {
+  padding: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: var(--mainSpacing);
+  font-size: 0.8rem;
+  background: var(--primaryColor);
+  color: var(--mainBlack);
+  border: 1px solid var(--primaryColor);
+  transition: var(--mainTransition);
+  cursor: pointer;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
 .banner-btn:hover {
+  background: transparent;
+  color: var(--primaryColor);
+}
+
+.checkout-button {
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+  letter-spacing: var(--mainSpacing);
+  font-size: 1.05rem;
+  background: var(--primaryColor);
+  color: var(--mainBlack);
+  border: 1px solid var(--primaryColor);
+  transition: var(--mainTransition);
+  cursor: pointer;
+}
+.checkout-button:hover {
   background: transparent;
   color: var(--primaryColor);
 }
