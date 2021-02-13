@@ -15,10 +15,11 @@ const catDOM = document.querySelector(".cat-center");
 const titleDOM = document.querySelector(".cat-section-title");
 const prodDOM = document.querySelector(".prod-main");
 const otherProdsDOM = document.querySelector(".other-product");
-const shoppingCartDom = document.querySelector(".main-content");
-const deleteShoppingCart = document.querySelector(".del");
+const shoppingCartDom = document.querySelector(".main");
+const deleteShoppingCart = document.querySelector(".delete");
 
 //cart 
+
 let cart = [];
 
 //buttons
@@ -53,7 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const ui = new UI();
     ui.setupAPP();
 
-    ui.cartLogic();
+    if (window.location.pathname == '/shopping-cart/cart.html') {
+        ui.cartLog();
+    } else { ui.cartLogic(); };
 });
 
 

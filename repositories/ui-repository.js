@@ -122,23 +122,6 @@ class UI {
         buttonsDOM = buttons;
         buttons.forEach(button => {
             let id = button.dataset.id;
-            if (window.location.pathname == '/shopping-cart/cart.html') {
-                button.addEventListener("click", () => {
-                    let cartItem = {
-                        ...Storage.getProduct(id),
-                        amount: 1
-                    };
-
-                    //add products to cart
-                    cart = [...cart, cartItem];
-                    //save cart in local storage
-                    Storage.saveCart(cart);
-                    //set cart values 
-                    this.setCartValues(cart);
-                    //display cart item
-                    this.addCartItems(cartItem);
-                })
-            }
             let inCart = cart.find(item => item.id === id);
             if (inCart) {
                 button.innerText = "In Cart"
@@ -164,7 +147,7 @@ class UI {
                     this.addCartItem(cartItem);
                     //show the cart
                     this.showCart();
-                } else if (window.location.pathname == '/product/product.html') {
+                } else {
                     let cartItem = {
                         ...Storage.getProds(id),
                         amount: 1
@@ -185,42 +168,55 @@ class UI {
         });
     }
     setCartValues(cart) {
-        let tempTotal = 0;
-        let itemsTotal = 0;
-        cart.map(item => {
-            tempTotal += item.price * item.amount;
-            itemsTotal += item.amount
-        });
-        cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
-        cartItems.innerText = itemsTotal;
+        if (window.location.pathname == '/shopping-cart/cart.html') {
+            let tempTotal = 0;
+            let itemsTotal = 0;
+            cart.map(item => {
+                tempTotal += item.price * item.amount;
+                itemsTotal += item.amount
+            });
+            cartTotal.innerText = parseFloat(tempTotal.toFixed('2'));
+
+        }
+        else {
+            let tempTotal = 0;
+            let itemsTotal = 0;
+            cart.map(item => {
+                tempTotal += item.price * item.amount;
+                itemsTotal += item.amount
+            });
+            cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+            cartItems.innerText = itemsTotal;
+        }
     }
 
     addCartItem(item) {
-        if (window.location.pathname == 'shopping-cart/cart.html') {
+        if (window.location.pathname == '/shopping-cart/cart.html') {
             const div = document.createElement('div');
-            div.classList.add('cart-item');
-            div.classList.add('add-cart');
-            div.innerHTML = `
-            <div class="content">
-                <div class="cont">
-                    <div class="del"><span>
-                        <i class="far fa-trash-alt delete data-id=${item.id}"></i>
-                    </span></div>
+            div.innerHTML =
+                `
+                <div class="main-content"> 
+                <div class="content">
+            <div class="cont">
+                      
+                        <i class="far fa-trash-alt delete" data-id=${item.id}></i>
+                    
                     <div class="first">
-                        <img class="image" src="${item.image}">
+                        <img class="image" src="${item.image}" alt="product">
                     </div>
                         <div class="second">
-                            <span>${item.title}</span>
+                            <h3>${item.title}</h3>
                         </div>
-                        <div class="third">item
-                            <span class="minus"><i class="far fa-minus-square data-id=${item.id}" ></i></span>
+                        <div class="third">
+                            <i class="far fa-minus-square" data-id=${item.id} ></i>
                             <span class="quantity">${item.amount}</span>
-                            <span class="plus"><i class="far fa-plus-square data-id=${item.id}"></i></span>
+                            <i class="far fa-plus-square" data-id=${item.id}></i>
                         </div>
                         <div class="end">
-                            <span>$${item.price}</span>
-                    </div>
-                    </div>
+                            <h4>$${item.price} ea.</h4>
+                            </div>
+                            </div>
+                            <div>
                 </div>`;
             shoppingCartDom.appendChild(div);
         } else {
@@ -268,12 +264,13 @@ class UI {
         if (window.location.pathname == '/shopping-cart/cart.html') {
             cart = Storage.getCart();
             this.setCartValues(cart);
+            this.populateCart(cart);
         } else {
             cart = Storage.getCart();
             this.setCartValues(cart);
             this.populateCart(cart);
             cartBtn.addEventListener('click', this.showCart);
-            closeCartBtn.addEventListener('click', this.hideCart);
+            closeCartBtn.addEventListener('click', this.hideCart)
         }
     }
 
@@ -325,6 +322,45 @@ class UI {
                 }
             }
         })
+
+    }
+    cartLog() {
+        shoppingCartDom.addEventListener('click', event => {
+            if (event.target.classList.contains("delete")) {
+                let removeItem = event.target;
+                let id = removeItem.dataset.id;
+                shoppingCartDom.removeChild(removeItem.parentElement.parentElement.parentElement.parentElement);
+                this.removeItem1(id);
+            }
+            else if (event.target.classList.contains("fa-plus-square")) {
+                let addAmount = event.target;
+                let id = addAmount.dataset.id;
+                let tempItem = cart.find(item => item.id === id);
+                tempItem.amount = tempItem.amount + 1;
+                Storage.saveCart(cart);
+                this.setCartValues(cart);
+                addAmount.previousElementSibling.innerText = tempItem.amount;
+            }
+            else if (event.target.classList.contains("fa-minus-square")) {
+                let lowerAmount = event.target;
+                let id = lowerAmount.dataset.id;
+                let tempItem = cart.find(item => item.id === id);
+                tempItem.amount = tempItem.amount - 1;
+                if (tempItem.amount > 0) {
+                    Storage.saveCart(cart);
+                    this.setCartValues(cart);
+                    lowerAmount.nextElementSibling.innerText = tempItem.amount;
+
+                }
+                else {
+                    shoppingCartDom.removeChild(lowerAmount.parentElement.parentElement.parentElement.parentElement.parentElement);
+                    this.removeItem1(id);
+                    lowerAmount.previousElementSibling.innerText = tempItem.amount;
+
+                }
+            }
+        })
+
     }
     clearCart() {
         let cartItems = cart.map(items => items.id);
@@ -335,6 +371,17 @@ class UI {
             cartContent.removeChild(cartContent.children[0]);
         }
         this.hideCart();
+
+    }
+    clearCart1() {
+        let cartItems = cart.map(items => items.id);
+        cartItems.forEach(id => this.removeItem(id));
+        console.log(shoppingCartDom.children)
+
+        while (shoppingCartDom.children.length > 0) {
+            shoppingCartDom.removeChild(shoppingCartDom.children[0]);
+        }
+
     }
     removeItem(id) {
         cart = cart.filter(item => item.id !== id);
@@ -345,6 +392,12 @@ class UI {
         button.innerHTML = `<i class="fas fa-shopping-cart"></i>
         add to cart`;
     }
+    removeItem1(id) {
+        cart = cart.filter(item => item.id !== id);
+        this.setCartValues(cart);
+        Storage.saveCart(cart);
+    }
+
     getSingleButton(id) {
         return buttonsDOM.find(button => button.dataset.id === id);
     }
