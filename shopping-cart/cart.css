@@ -12,11 +12,31 @@
     position: relative;
     overflow: hidden;
     display: flex;
+    justify-content: center;
 }
 
+.first,
+.second,
+.third,
+.end,
+.del {
+    margin-top: auto;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+}
 .cont {
-    padding: 20px 30px;
-    display: flex;
+    display: inline-block;
+}
+
+@media screen and (max-width: 1120px) {
+    .cont {
+        padding: 10px 10px;
+    }
+    .checkout-content {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 
 .total {
@@ -57,22 +77,40 @@
     width: 200px;
 }
 
-.first,
-.second,
-.third,
-.end,
-.delete {
-    margin-top: auto;
-    margin-bottom: auto;
+.del {
+    margin-left: auto;
 }
+@media screen and (min-width: 715px) {
+    .first,
+    .second,
+    .third,
+    .end,
+    .del {
+        margin-top: auto;
+        margin-bottom: auto;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+    .cont {
+        padding: 20px 30px;
+        display: grid;
+        grid-template-columns: auto 1fr 1fr 1fr 1fr;
+        width: 100%;
+    }
 
-.delete {
+
+.del {
     margin-right: 15px;
 }
 
 .second,
 .third,
 .end {
-    margin-right: 75px;
-    margin-left: 75px;
+    margin-right: 33.3px;
+    margin-left: 33.3px;
+}
+
+.second {
+    text-transform: capitalize;
+}
 }

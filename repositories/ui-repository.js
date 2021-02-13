@@ -198,14 +198,14 @@ class UI {
                 <div class="main-content"> 
                 <div class="content">
             <div class="cont">
-                      
+                      <div class="del">
                         <i class="far fa-trash-alt delete" data-id=${item.id}></i>
-                    
+                    </div>
                     <div class="first">
                         <img class="image" src="${item.image}" alt="product">
                     </div>
                         <div class="second">
-                            <h3>${item.title}</h3>
+                            ${item.title}
                         </div>
                         <div class="third">
                             <i class="far fa-minus-square" data-id=${item.id} ></i>
@@ -213,7 +213,7 @@ class UI {
                             <i class="far fa-plus-square" data-id=${item.id}></i>
                         </div>
                         <div class="end">
-                            <h4>$${item.price} ea.</h4>
+                            $${item.price} ea.
                             </div>
                             </div>
                             <div>
@@ -317,8 +317,6 @@ class UI {
                 else {
                     cartContent.removeChild(lowerAmount.parentElement.parentElement);
                     this.removeItem(id);
-                    lowerAmount.nextElementSibling.innerText = tempItem.amount;
-
                 }
             }
         })
@@ -329,7 +327,7 @@ class UI {
             if (event.target.classList.contains("delete")) {
                 let removeItem = event.target;
                 let id = removeItem.dataset.id;
-                shoppingCartDom.removeChild(removeItem.parentElement.parentElement.parentElement.parentElement);
+                shoppingCartDom.removeChild(removeItem.parentElement.parentElement.parentElement.parentElement.parentElement);
                 this.removeItem1(id);
             }
             else if (event.target.classList.contains("fa-plus-square")) {
@@ -355,7 +353,6 @@ class UI {
                 else {
                     shoppingCartDom.removeChild(lowerAmount.parentElement.parentElement.parentElement.parentElement.parentElement);
                     this.removeItem1(id);
-                    lowerAmount.previousElementSibling.innerText = tempItem.amount;
 
                 }
             }
