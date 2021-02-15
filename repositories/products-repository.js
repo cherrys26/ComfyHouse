@@ -29,12 +29,16 @@ class Products {
         }
     }
 
-    async getOtherProds(category) {
+    async getOtherProds(category, productId) {
         try {
             let result = await fetch(`http://localhost:3000/api/categorys/${category}`);
             let data = await result.json();
             let otherProds = data;
+            
+
             otherProds = otherProds.filter(function (item) {
+                if (item.id !== productId) {
+                    
                 return {
                     title: item.title,
                     id: item.id,
@@ -42,8 +46,10 @@ class Products {
                     image: item.image,
                     category: item.category,
                 }
+            }
             })
-            return otherProds;
+            return otherProds ;
+
         }
         catch (err) {
             console.log(err);

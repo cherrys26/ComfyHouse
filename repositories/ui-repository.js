@@ -108,7 +108,7 @@ class UI {
 
     displayOtherProds(otherProd) {
         let result = '';
-        otherProd.filter(otherProd => {
+        otherProd.forEach(otherProd => {
             result += ` 
             <div class="other-product-title" data-id="${otherProd.id}">
                     <a href="/product/product.html?p=${otherProd.id}&c=${otherProd.category}">
