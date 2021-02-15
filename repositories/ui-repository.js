@@ -23,6 +23,7 @@ class UI {
 
     displayProd(prod) {
         let result = `
+        <div data-id="${prod.id}">
             <div class="product-section-title">
             <h2>${prod.title}</h2>
         </div>
@@ -55,12 +56,15 @@ class UI {
                                 </div>
                             </span>
                         </div>
-                        
-                            <button class="bag-btn" data-id=${prod.id}>Add to Cart</button>
+                            <button class="bag-btn" data-id=${prod.id}>
+                            <i class="poop"></i>
+                            Add to Cart
+                            </button>
    
                     </div>
                 </div>
             </div>
+        </div>
         </div>
             `;
         prodDOM.innerHTML = result;
@@ -91,7 +95,7 @@ class UI {
             <article class="category">
     <div class="img-container">
     <a href="/product-categorys/product-categorys.html?p=${category.title}">
-        <img src=${category.image} alt="category" class="category-img">
+        <img src=${category.image} alt="category" class="category-img" >
                 </a></div>
         <h3>${category.title
                 }</h3>
@@ -104,10 +108,11 @@ class UI {
 
     displayOtherProds(otherProd) {
         let result = '';
-        otherProd.forEach(otherProd => {
-            result += ` <div class="other-product-title">
+        otherProd.filter(otherProd => {
+            result += ` 
+            <div class="other-product-title" data-id="${otherProd.id}">
                     <a href="/product/product.html?p=${otherProd.id}&c=${otherProd.category}">
-                        <img src="${otherProd.image}" class="other-product-img ">
+                        <img src="${otherProd.image}" class="other-product-img" >
                     </a>
                     <h3>${otherProd.title}</h3>
                     <h4>$${otherProd.price}</h4>
@@ -368,26 +373,23 @@ class UI {
             cartContent.removeChild(cartContent.children[0]);
         }
         this.hideCart();
-
     }
-    clearCart1() {
-        let cartItems = cart.map(items => items.id);
-        cartItems.forEach(id => this.removeItem(id));
-        console.log(shoppingCartDom.children)
 
-        while (shoppingCartDom.children.length > 0) {
-            shoppingCartDom.removeChild(shoppingCartDom.children[0]);
-        }
-
-    }
     removeItem(id) {
-        cart = cart.filter(item => item.id !== id);
-        this.setCartValues(cart);
-        Storage.saveCart(cart);
-        let button = this.getSingleButton(id);
-        button.disabled = false;
-        button.innerHTML = `<i class="fas fa-shopping-cart"></i>
+        if (window.location.pathname == '/home/home.html') {
+            cart = cart.filter(item => item.id !== id);
+            this.setCartValues(cart);
+            Storage.saveCart(cart);
+            let button = this.getSingleButton(id);
+            button.disabled = false;
+            button.innerHTML = `<i class="fas fa-shopping-cart"></i>
         add to cart`;
+        }
+        else {
+            cart = cart.filter(item => item.id !== id);
+            this.setCartValues(cart);
+            Storage.saveCart(cart);
+        }
     }
     removeItem1(id) {
         cart = cart.filter(item => item.id !== id);
