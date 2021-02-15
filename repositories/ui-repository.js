@@ -57,7 +57,6 @@ class UI {
                             </span>
                         </div>
                             <button class="bag-btn" data-id=${prod.id}>
-                            <i class="poop"></i>
                             Add to Cart
                             </button>
    
@@ -333,7 +332,7 @@ class UI {
                 let removeItem = event.target;
                 let id = removeItem.dataset.id;
                 shoppingCartDom.removeChild(removeItem.parentElement.parentElement.parentElement.parentElement.parentElement);
-                this.removeItem1(id);
+                this.removeItem(id);
             }
             else if (event.target.classList.contains("fa-plus-square")) {
                 let addAmount = event.target;
@@ -357,7 +356,7 @@ class UI {
                 }
                 else {
                     shoppingCartDom.removeChild(lowerAmount.parentElement.parentElement.parentElement.parentElement.parentElement);
-                    this.removeItem1(id);
+                    this.removeItem(id);
 
                 }
             }
@@ -385,19 +384,29 @@ class UI {
             button.innerHTML = `<i class="fas fa-shopping-cart"></i>
         add to cart`;
         }
+        else if (window.location.pathname == '/product/product.html') {
+            cart = cart.filter(item => item.id !== id);
+            this.setCartValues(cart);
+            Storage.saveCart(cart);
+            let button = this.getSingleButton(id);
+            button.disabled = false;
+            button.innerHTML = 'Add To Cart';
+        }
         else {
             cart = cart.filter(item => item.id !== id);
             this.setCartValues(cart);
             Storage.saveCart(cart);
+
+
         }
-    }
-    removeItem1(id) {
-        cart = cart.filter(item => item.id !== id);
-        this.setCartValues(cart);
-        Storage.saveCart(cart);
     }
 
     getSingleButton(id) {
-        return buttonsDOM.find(button => button.dataset.id === id);
+        if (window.location.pathname == '/product/product.html') {
+            return buttonsDOM[0];
+        }
+        else {
+            return buttonsDOM.find(button => button.dataset.id === id);
+        }
     }
 }
