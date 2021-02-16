@@ -17,6 +17,8 @@ const prodDOM = document.querySelector(".prod-main");
 const otherProdsDOM = document.querySelector(".other-product");
 const shoppingCartDom = document.querySelector(".main");
 const deleteShoppingCart = document.querySelector(".delete");
+const clearCheckout = document.querySelector(".checkout-btn");
+
 
 //cart 
 

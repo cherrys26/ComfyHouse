@@ -316,17 +316,18 @@ class UI {
                     Storage.saveCart(cart);
                     this.setCartValues(cart);
                     lowerAmount.previousElementSibling.innerText = tempItem.amount;
-
-                }
-                else {
-                    cartContent.removeChild(lowerAmount.parentElement.parentElement);
-                    this.removeItem(id);
+                } else if (tempItem.amount = 1) {
+                    Storage.saveCart(cart);
                 }
             }
         })
 
     }
     cartLog() {
+        clearCheckout.addEventListener('click', () => {
+            this.clearCart();
+        });
+
         shoppingCartDom.addEventListener('click', event => {
             if (event.target.classList.contains("delete")) {
                 let removeItem = event.target;
@@ -354,9 +355,8 @@ class UI {
                     lowerAmount.nextElementSibling.innerText = tempItem.amount;
 
                 }
-                else {
-                    shoppingCartDom.removeChild(lowerAmount.parentElement.parentElement.parentElement.parentElement.parentElement);
-                    this.removeItem(id);
+                else if (tempItem.amount = 1) {
+                    Storage.saveCart(cart);
 
                 }
             }
@@ -364,14 +364,24 @@ class UI {
 
     }
     clearCart() {
-        let cartItems = cart.map(items => items.id);
-        cartItems.forEach(id => this.removeItem(id));
-        console.log(cartContent.children)
+        if (window.location.pathname == '/shopping-cart/cart.html') {
+            let cartItems = cart.map(items => items.id);
+            cartItems.forEach(id => this.removeItem(id));
+            console.log(shoppingCartDom.children)
 
-        while (cartContent.children.length > 0) {
-            cartContent.removeChild(cartContent.children[0]);
+            while (shoppingCartDom.children.length > 0) {
+                shoppingCartDom.removeChild(shoppingCartDom.children[0]);
+            }
+        } else {
+            let cartItems = cart.map(items => items.id);
+            cartItems.forEach(id => this.removeItem(id));
+            console.log(cartContent.children)
+
+            while (cartContent.children.length > 0) {
+                cartContent.removeChild(cartContent.children[0]);
+            }
+            this.hideCart();
         }
-        this.hideCart();
     }
 
     removeItem(id) {

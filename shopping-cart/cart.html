@@ -52,8 +52,15 @@
             Total Price: $
             <span class="cart-total">0</span>
         </div>
-        
-        <button class="checkout-btn">Checkout</button>
+
+        <dialog id="checkout-button">
+            <div class="close">
+                <button onclick="func()" id="close">&times;</button>
+            </div>
+            <h2>Order Complete</h2>
+            <p>Thank you for shopping with us :D</p>
+        </dialog>
+        <button class="checkout-btn" id="checkout-btn">Checkout</button>
 
     </section>
 

@@ -98,19 +98,44 @@
         width: 100%;
     }
 
+    .del {
+        margin-right: 15px;
+    }
 
-.del {
-    margin-right: 15px;
+    .second,
+    .third,
+    .end {
+        margin-right: 33.3px;
+        margin-left: 33.3px;
+    }
+
+    .second {
+        text-transform: capitalize;
+    }
+}
+#checkout-button {
+    margin: auto;
+    width: 35%;
+    height: 8rem;
+    background-color: #ff9b3db4;
+    border: 1px solid black;
 }
 
-.second,
-.third,
-.end {
-    margin-right: 33.3px;
-    margin-left: 33.3px;
+#close {
+    font-size: 1.2rem;
+    height: 1.25rem;
+    width: 1.25rem;
+}
+.close {
+    text-align: right;
+    padding: 0.25rem;
 }
 
-.second {
-    text-transform: capitalize;
+h2 {
+    padding: 0 0.5rem 0.5rem 0.5rem;
 }
+
+p {
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    font-size: 1.1rem;
 }
